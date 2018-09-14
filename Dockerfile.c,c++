@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+
+ENV HOME=/work
+ENV HOSTNAME=road2guru
+
+RUN apt-get update && apt-get install -y -f zsh curl wget git gcc g++ make cmake binutils autoconf automake vim python3 && \
+	useradd -m -s /bin/zsh noob && \
+	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > /tmp/zsh.install && \
+	chmod 777 /tmp/zsh.install && su -c 'vi -c "%s/env\ zsh\ \-l//g|wq" /tmp/zsh.install' noob && \
+	su -c 'sh /tmp/zsh.install' noob && \
+	su -c 'vi -c "%s/robbyrussell/rkj-repos/g|wq" ~/.zshrc' noob 
